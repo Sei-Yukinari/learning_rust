@@ -1,0 +1,32 @@
+name: Rust Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v1
+        with:
+          profile: minimal
+
+      - name: Build and Test hello
+        run: |
+          cd chapter02/hello
+          cargo build --verbose
+          cargo test --verbose
+
+      - name: Build and Test actix-gcd
+        run: |
+          cd chapter02/actix-gcd
+          cargo build --verbose
+          cargo test --verbose
+
